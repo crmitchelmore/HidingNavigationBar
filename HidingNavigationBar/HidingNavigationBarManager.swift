@@ -66,7 +66,7 @@ public class HidingNavigationBarManager: NSObject, UIScrollViewDelegate, UIGestu
 		extensionController = HidingViewController()
 		viewController.view.addSubview(extensionController.view)
 		
-		let navBar = UIView()//viewController.navigationController!.navigationBar
+		let navBar = viewController.navigationController!.navigationBar
 		navBarController = HidingViewController(view: navBar)
 		navBarController.child = extensionController
 		navBarController.alphaFadeEnabled = true
@@ -209,13 +209,12 @@ public class HidingNavigationBarManager: NSObject, UIScrollViewDelegate, UIGestu
 	}
 	
 	private func statusBarHeight() -> CGFloat {
-        return 0
-//		if UIApplication.sharedApplication().statusBarHidden {
-//			return 0
-//		}
-//		
-//		let statusBarSize = UIApplication.sharedApplication().statusBarFrame.size
-//		return min(statusBarSize.width, statusBarSize.height)
+		if UIApplication.sharedApplication().statusBarHidden {
+			return 0
+		}
+		
+		let statusBarSize = UIApplication.sharedApplication().statusBarFrame.size
+		return min(statusBarSize.width, statusBarSize.height)
 	}
 	
 	private func shouldHandleScrolling() -> Bool {
