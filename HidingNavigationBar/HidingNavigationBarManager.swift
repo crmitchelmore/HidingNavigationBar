@@ -76,11 +76,11 @@ public class HidingNavigationBarManager: NSObject, UIScrollViewDelegate, UIGestu
 		super.init()
 		
 		// track panning on scroll view
-		let panGesture = UIPanGestureRecognizer(target: self, action: Selector("handlePanGesture:"))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
 		panGesture.delegate = self
 		scrollView.addGestureRecognizer(panGesture)
 		
-		navBarController.expandedCenter = {[weak self] (view: UIView) -> CGPoint in
+		navBarController.expandedCenter = { [weak self] (view: UIView) -> CGPoint in
 			return CGPointMake(CGRectGetMidX(view.bounds), CGRectGetMidY(view.bounds) + (self?.statusBarHeight() ?? 0))
 		}
 		
@@ -93,7 +93,7 @@ public class HidingNavigationBarManager: NSObject, UIScrollViewDelegate, UIGestu
 		
 		updateContentInsets()
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("applicationDidBecomeActive"), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
 	}
 	
 	deinit {
