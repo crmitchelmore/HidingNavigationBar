@@ -76,7 +76,7 @@ public class HidingNavigationBarManager: NSObject, UIScrollViewDelegate, UIGestu
 		super.init()
 		
 		// track panning on scroll view
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
 		panGesture.delegate = self
 		scrollView.addGestureRecognizer(panGesture)
 		
