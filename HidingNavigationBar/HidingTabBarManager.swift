@@ -118,6 +118,14 @@ public class HidingTabBarManager: NSObject, UIScrollViewDelegate, UIGestureRecog
         handleScrolling()
     }
     
+    public func expandAnimated() {
+        tabBarController.snap(false, completion: nil)
+        
+        previousYOffset = CGFloat.NaN
+        
+        handleScrolling()
+    }
+    
     //MARK: NSNotification
     
     func applicationDidBecomeActive() {
